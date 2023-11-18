@@ -1,0 +1,228 @@
+@font-face {
+    font-family: PassionOne;
+    src: url('./fonts/PassionOne-Regular.ttf');
+}
+
+@font-face {
+    font-family: digital;
+    src: url('./fonts/DS-DIGI.TTF');
+}
+
+body {
+    background-color: #000;
+    font-family: PassionOne;
+    margin: 0;
+}
+
+#container {
+    font-family: PassionOne;
+    margin: 100px auto;
+    width: 500px;
+}
+
+input {
+    all: unset;
+    margin-left: -10px;
+    height: 90px;
+    width: 100%;
+    font-size: 50px;
+    margin-top: 20px;
+    background-color: #EAEAEA;
+    color: black;
+}
+
+button {
+    all: unset;
+    margin-top: 25px;
+    cursor: pointer;
+}
+
+.brackets {
+    padding: 40px;
+    width: 200px;
+    height: 20px;
+    background-color: #EAEAEA;
+    background-position: 10px;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    box-shadow: 0px 20px 0px #eaeaea;
+}
+
+.brackets:before,
+.brackets:after {
+    position: absolute;
+    width: 40px;
+    height: 100px;
+    border-color: #82DD82;
+    border-style: solid;
+    content: ' ';
+}
+
+.brackets:before {
+    top: 0;
+    left: 0;
+    border-width: 10px 0 10px 10px;
+}
+
+.brackets:after {
+    top: 0;
+    right: 0;
+    border-width: 10px 10px 10px 0
+}
+
+#controls {
+    margin-top: 20px;
+    position: absolute;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 1;
+}
+
+#controls>span {
+    cursor: pointer;
+}
+
+#controls:hover~.timer_container {
+    opacity: 50%;
+}
+
+#controls.hidden {
+    opacity: 0%;
+}
+
+#controls.hidden:hover {
+    opacity: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+.re-checkbox-circle-line {
+    color: #82DD82;
+}
+
+.re-play-line {
+    color: #2FCC71;
+}
+
+.re-stop-line {
+    color: #E74C3C;
+}
+
+.re-pause-line {
+    color: #F1C40E;
+}
+
+.timer_container {
+    margin-top: 20px;
+    font-family: 'digital', Courier, monospace;
+    font-size: 60px;
+    color: #bddebd;
+}
+
+.timer_container.paused {
+    color: #F1C40E;
+}
+
+/*ri: Research Image*/
+
+.re-card {
+    width: 375px;
+    background-color: #c8e5c4;
+    color: #555;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 20px;
+}
+
+.re-card.over {
+    width: 375px;
+    outline: 10px dashed rgb(149, 250, 153);
+}
+
+/*
+  .re-card:hover > div {
+    display: none;
+  }*/
+
+#re-container {
+    margin-top: 100px;
+    padding: 70px;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.re-image {
+    pointer-events: none;
+    height: 195px;
+    width: 375px;
+    border-radius: 20px 20px 0px 0px;
+    background-size: cover;
+}
+
+.re-domain {
+    text-transform: uppercase;
+}
+
+.re-title {
+    font-weight: bold;
+    color: #000;
+}
+
+.re-description {
+    margin-top: 5px;
+    width: 480px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+}
+
+.re-text {
+    pointer-events: none;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.re-content {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    height: 60px;
+}
+
+.ri-checkbox-circle-line {
+    color: #2FCC71 !important;
+}
+
+.ri-arrow-right-line {
+    margin: auto;
+    font-size: 30px;
+    color: #EAEAEA;
+}
+
+.ri-menu-line {
+    cursor: pointer;
+    vertical-align: middle;
+    float: right;
+    margin-right: 40px;
+    margin-top: 5px;
+}
+
+.ri-play-line {
+    color: #2FCC71;
+}
+
+.ri-stop-line {
+    color: #E74C3C;
+}
+
+.ri-pause-line {
+    color: #F1C40E;
+}
