@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Timer from './Timer'
 
-function Controls({ timer, interval, setInputValue }): JSX.Element {
+function Controls({ timer, setInputValue, setBellPlayed }): JSX.Element {
   const [paused, setPaused] = useState(false)
   const handlePlayButton = () => {
     timer.current.startResume()
@@ -17,6 +17,7 @@ function Controls({ timer, interval, setInputValue }): JSX.Element {
     timer.current = new Timer()
     setInputValue('')
     setPaused(false)
+    setBellPlayed(false)
   }
 
   return (
