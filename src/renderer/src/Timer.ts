@@ -1,5 +1,5 @@
 class Timer {
-  paused_at = 0
+  paused_at: number = 0
   offset
   countdown
   target: Date
@@ -11,12 +11,16 @@ class Timer {
 
   startResume(): void {
     if (this.paused_at > 0) {
-      this.target = new Date(Number(new Date()) - Number(this.paused_at))
+      this.target = new Date(Number(this.target) + Number(new Date()) - Number(this.paused_at))
       this.paused_at = 0
     } else {
       this.target = this.parseValue(this.countdown)
     }
   }
+
+	pause(): void {
+		this.paused_at = Number(new Date())
+	}
 
   current(): number {
     return this.paused_at > 0
