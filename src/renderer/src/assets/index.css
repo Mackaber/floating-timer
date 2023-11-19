@@ -18,6 +18,7 @@ body {
     font-family: PassionOne;
     margin: 100px auto;
     width: 500px;
+    -webkit-app-region: drag;
 }
 
 input {
@@ -58,6 +59,7 @@ button {
     border-color: #82DD82;
     border-style: solid;
     content: ' ';
+    -webkit-app-region: drag
 }
 
 .brackets:before {
@@ -123,6 +125,7 @@ button {
     font-family: 'digital', Courier, monospace;
     font-size: 60px;
     color: #bddebd;
+    text-align: center;
 }
 
 .timer_container.paused {
