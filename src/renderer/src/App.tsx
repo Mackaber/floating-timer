@@ -1,6 +1,8 @@
 import 'remixicon/fonts/remixicon.css'
 import Controls from './Controls'
 import Timer from './Timer'
+import TimeContainer from './components/TimeContainer'
+import TaskContainer from './components/TaskContainer'
 import { useEffect, useRef, useState } from 'react'
 
 function App(): JSX.Element {
@@ -9,18 +11,6 @@ function App(): JSX.Element {
   const display_colon = useRef<boolean>(true)
   const interval = useRef<number>(null)
   const timer = useRef<Timer>(new Timer())
-
-  const handleInputChange = (e): void => {
-    const value = e.target.value
-    timer.current.setCountdown(value)
-    setInputValue(value)
-  }
-
-  const handleEnterPress = (e: React.KeyboardEvent<HTMLInputElement>): void => {
-    if (e.key === 'Enter') {
-      timer.current.startResume()
-    }
-  }
 
   useEffect(() => {
     interval.current = setInterval(() => {
@@ -33,22 +23,19 @@ function App(): JSX.Element {
 
   return (
     <div className="brackets">
-      {timer.current.target ?
+      <TaskContainer style={{ top: '0px' }} placeholder="Current Task" />
+      {timer.current.target ? (
         <>
           <Controls timer={timer} interval={interval} setInputValue={setInputValue} />
           <div className="timer_container" style={{ whiteSpace: 'nowrap' }}>
             {currentTime}
           </div>
-        </> :
-        <input
-          className="timer_container"
-          onChange={handleInputChange}
-          onKeyDown={handleEnterPress}
-          value={inputValue}
-          placeholder="00:00"
-        /> 
-      }
-    </div> 
+        </>
+      ) : (
+        <TimeContainer timer={timer} inputValue={inputValue} setInputValue={setInputValue} />
+      )}
+      <TaskContainer style={{ bottom: '0px' }} placeholder="" />
+    </div>
   )
 }
 

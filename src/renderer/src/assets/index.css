@@ -21,7 +21,14 @@ body {
     -webkit-app-region: drag;
 }
 
-input {
+.task_container {
+    all: unset;
+    position: absolute;
+    text-align: center;
+    font-family: PassionOne;
+}
+
+input.time_container {
     all: unset;
     margin-left: -10px;
     height: 90px;
@@ -30,6 +37,11 @@ input {
     margin-top: 20px;
     background-color: #EAEAEA;
     color: black;
+    margin-top: 20px;
+    font-family: 'digital', Courier, monospace;
+    font-size: 60px;
+    color: #82DD82;
+    text-align: center;
 }
 
 button {
@@ -124,7 +136,7 @@ button {
     margin-top: 20px;
     font-family: 'digital', Courier, monospace;
     font-size: 60px;
-    color: #bddebd;
+    color: #82DD82;
     text-align: center;
 }
 

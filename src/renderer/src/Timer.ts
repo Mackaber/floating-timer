@@ -2,7 +2,7 @@ class Timer {
   paused_at: number = 0
   offset
   countdown
-  target: Date
+  target: Date | undefined
 
   setCountdown(countdown: string): void {
     this.countdown = countdown
@@ -18,9 +18,9 @@ class Timer {
     }
   }
 
-	pause(): void {
-		this.paused_at = Number(new Date())
-	}
+  pause(): void {
+    this.paused_at = Number(new Date())
+  }
 
   current(): number {
     return this.paused_at > 0
