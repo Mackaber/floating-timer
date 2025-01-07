@@ -6,7 +6,7 @@ const bell = new Audio(bell_sound)
 function TimeDisplay({ timer, bellPlayed, setBellPlayed }): JSX.Element {
   const [currentTime, setCurrentTime] = useState(null)
   const display_colon = useRef<boolean>(true)
-  const interval = useRef<number>(null)
+  const interval = useRef<ReturnType<typeof setInterval> | null>(null)
 
   useEffect(() => {
     interval.current = setInterval(() => {
@@ -19,7 +19,11 @@ function TimeDisplay({ timer, bellPlayed, setBellPlayed }): JSX.Element {
       }
     }, 1000)
 
-    return () => clearInterval(interval.current)
+    return () => {
+      if (interval.current !== null) {
+        clearInterval(interval.current)
+      }
+    }
   }, [bellPlayed, setBellPlayed])
 
   return (

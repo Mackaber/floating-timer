@@ -1,4 +1,4 @@
-# my-app
+# Floating timer
 
 An Electron application with React and TypeScript
 

@@ -22,7 +22,7 @@ function Controls({ timer, setInputValue, setBellPlayed }): JSX.Element {
 
   return (
     <div id="controls" className="hidden">
-      {paused > 0 ? (
+      {paused ? (
         <span id="start_research_btn" onClick={handlePlayButton}>
           <i className="ri-play-line ri-4x"></i>
         </span>
