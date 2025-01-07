@@ -5,6 +5,7 @@ import TimeContainer from './components/TimeContainer'
 import TaskContainer from './components/TaskContainer'
 import TimeDisplay from './components/TimeDisplay'
 import { useRef, useState } from 'react'
+import ModeSwitch from './components/ModeSwitch'
 
 function App(): JSX.Element {
   const [inputValue, setInputValue] = useState('')
@@ -22,7 +23,7 @@ function App(): JSX.Element {
       ) : (
         <TimeContainer {...{ timer, inputValue, setInputValue }} />
       )}
-      <TaskContainer style={{ bottom: '0px' }} placeholder="" />
+      <ModeSwitch style={{ bottom: '0px' }} {...{timer}} />
     </div>
   )
 }
