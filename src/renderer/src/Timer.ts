@@ -3,8 +3,8 @@ class Timer {
   offset: number = 0;
   countdown: string = '';
   target: Date | undefined;
-  planningDuration: number = 5000 //5 * 60 * 1000; // 5 minutes in milliseconds
-  wrappingUpDuration: number = 5000 //5 * 60 * 1000; // 5 minutes in milliseconds
+  planningDuration: number = 5 * 60 * 1000; // 5 minutes in milliseconds
+  wrappingUpDuration: number = 5 * 60 * 1000; // 5 minutes in milliseconds
 
   setCountdown(countdown: string): void {
     this.countdown = countdown;
@@ -31,14 +31,13 @@ class Timer {
   }
 
   first_five(): boolean {
-    console.log(Number(this.target) - Number(new Date()));
-    
-    return Number(this.target) - 5000 < Number(new Date())
-    // (10... + 1) - (10...) = 1
+    const start_time = Number(this.target) - this.parseValue(this.countdown)
+    console.log(Number(new Date()) - start_time)
+    return Number(new Date()) - start_time < this.planningDuration
   }
 
   last_five(): boolean {
-    return Number(this.target) - Number(new Date()) < 5000;
+    return Number(this.target) - Number(new Date()) < this.wrappingUpDuration;
   }
 
   done(): boolean {
