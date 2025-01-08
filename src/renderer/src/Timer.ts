@@ -3,9 +3,8 @@ class Timer {
   offset: number = 0;
   countdown: string = '';
   target: Date | undefined;
-  planningDuration: number = 5 * 60 * 1000; // 5 minutes in milliseconds
-  wrappingUpDuration: number = 5 * 60 * 1000; // 5 minutes in milliseconds
-  workingDuration: number = 0;
+  planningDuration: number = 5000 //5 * 60 * 1000; // 5 minutes in milliseconds
+  wrappingUpDuration: number = 5000 //5 * 60 * 1000; // 5 minutes in milliseconds
 
   setCountdown(countdown: string): void {
     this.countdown = countdown;
@@ -17,7 +16,6 @@ class Timer {
       this.paused_at = 0;
     } else {
       const totalDuration = this.parseValue(this.countdown);
-      this.workingDuration = totalDuration - this.planningDuration - this.wrappingUpDuration;
       this.target = new Date(Number(new Date()) + totalDuration);
     }
   }
@@ -33,14 +31,14 @@ class Timer {
   }
 
   first_five(): boolean {
-    const now = Number(new Date());
-    const elapsed = Number(this.target) - now;
-    return elapsed <= this.planningDuration;
+    console.log(Number(this.target) - Number(new Date()));
+    
+    return Number(this.target) - 5000 < Number(new Date())
+    // (10... + 1) - (10...) = 1
   }
+
   last_five(): boolean {
-    const now = Number(new Date());
-    const elapsed = Number(this.target) - now;
-    return elapsed <= this.wrappingUpDuration;
+    return Number(this.target) - Number(new Date()) < 5000;
   }
 
   done(): boolean {
@@ -62,16 +60,11 @@ class Timer {
   }
 
   current_mode(): 'planning' | 'working' | 'wrapping-up' {
-    const now = Number(new Date());
-    const elapsed = Number(this.target) - now;
-
-    if (elapsed > this.workingDuration + this.wrappingUpDuration) {
-      return 'planning';
-    } else if (elapsed > this.wrappingUpDuration) {
-      return 'working';
-    } else {
-      return 'wrapping-up';
-    }
+    return this.first_five() ? 
+      'planning' : 
+      (this.last_five() ? 
+      'wrapping-up' : 
+      'working');
   }
 
   parseValue(value: string): number {
