@@ -13,6 +13,7 @@ class Timer {
 
   startResume(): void {
     if (this.paused_at > 0) {
+      this.target = new Date(Number(this.target) + Number(new Date()) - this.paused_at);
       this.paused_at = 0;
     } else {
       const totalDuration = this.parseValue(this.countdown);
