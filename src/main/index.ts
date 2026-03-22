@@ -1,13 +1,34 @@
-import { app, shell, BrowserWindow } from 'electron'
+import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+import { BASE_WINDOW_WIDTH, BASE_WINDOW_HEIGHT, MIN_SCALE, MAX_SCALE } from '../renderer/src/constants'
+
+const clampScale = (scale: number): number => {
+  if (!Number.isFinite(scale)) return 1
+  return Math.min(MAX_SCALE, Math.max(MIN_SCALE, scale))
+}
+
+ipcMain.on('window:set-scale', (event, scale: number) => {
+  const targetWindow = BrowserWindow.fromWebContents(event.sender)
+  if (!targetWindow || targetWindow.isDestroyed()) return
+
+  const boundedScale = clampScale(scale)
+  const nextWidth = Math.round(BASE_WINDOW_WIDTH * boundedScale)
+  const nextHeight = Math.round(BASE_WINDOW_HEIGHT * boundedScale)
+  const wasResizable = targetWindow.isResizable()
+
+  if (!wasResizable) targetWindow.setResizable(true)
+  targetWindow.webContents.setZoomFactor(boundedScale)
+  targetWindow.setSize(nextWidth, nextHeight)
+  if (!wasResizable) targetWindow.setResizable(false)
+})
 
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 280,
-    height: 120,
+    width: BASE_WINDOW_WIDTH,
+    height: BASE_WINDOW_HEIGHT,
     resizable: false,
     show: false,
     frame: false,
